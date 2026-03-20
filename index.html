@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Valeriu Angheluță - Blog de călătorii în Japonia</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body{
+    background:#f5f5f5;
+}
+
+.hero{
+    background:url("https://images.unsplash.com/photo-1505066827145-34bcde228f1c") center/cover;
+    height:80vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    text-shadow:2px 2px 10px black;
+}
+
+.card img{
+    height:200px;
+    object-fit:cover;
+}
+
+.gallery img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+    transition:0.3s;
+}
+
+.gallery img:hover{
+    transform:scale(1.08);
+}
+
+footer{
+    background:#111;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<div class="container">
+<a class="navbar-brand" href="#">Valeriu Angheluță</a>
+
+<button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+<span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="menu">
+<ul class="navbar-nav ms-auto">
+<li class="nav-item"><a class="nav-link" href="#">Acasă</a></li>
+<li class="nav-item"><a class="nav-link" href="#articole">Articole</a></li>
+<li class="nav-item"><a class="nav-link" href="#galerie">Galerie</a></li>
+<li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+</ul>
+</div>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+<div class="text-center">
+<h1 class="display-4">Jurnalul meu din Japonia</h1>
+<p class="lead">Aventurile lui Valeriu Angheluță prin Tokyo, Kyoto și Osaka</p>
+
+<button class="btn btn-danger btn-lg mt-3" onclick="salut()">Descoperă aventura</button>
+</div>
+</section>
+
+<!-- ARTICOLE -->
+<section id="articole" class="container py-5">
+<h2 class="text-center mb-4">Ultimele articole</h2>
+
+<div class="row g-4">
+
+<div class="col-md-4">
+<div class="card shadow">
+<img src="https://images.unsplash.com/photo-1549692520-acc6669e2f0c">
+<div class="card-body">
+<h5 class="card-title">Prima zi în Tokyo</h5>
+<p class="card-text">Am explorat Shibuya Crossing și am gustat primul ramen autentic.</p>
+<button class="btn btn-outline-primary">Citește</button>
+</div>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card shadow">
+<img src="https://images.unsplash.com/photo-1495567720989-cebdbdd97913">
+<div class="card-body">
+<h5 class="card-title">Templele din Kyoto</h5>
+<p class="card-text">O zi liniștită printre temple tradiționale și grădini japoneze.</p>
+<button class="btn btn-outline-primary">Citește</button>
+</div>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card shadow">
+<img src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26">
+<div class="card-body">
+<h5 class="card-title">Noaptea în Osaka</h5>
+<p class="card-text">Străzile pline de lumină și street food incredibil.</p>
+<button class="btn btn-outline-primary">Citește</button>
+</div>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- GALERIE -->
+<section id="galerie" class="container py-5">
+<h2 class="text-center mb-4">Galerie din Japonia</h2>
+
+<div class="row g-3 gallery">
+
+<div class="col-md-3"><img src="https://images.unsplash.com/photo-1526481280691-7813e7f9d0a7"></div>
+<div class="col-md-3"><img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186"></div>
+<div class="col-md-3"><img src="https://images.unsplash.com/photo-1504788363733-507549153474"></div>
+<div class="col-md-3"><img src="https://images.unsplash.com/photo-1498654896293-37aacf113fd9"></div>
+
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="container py-5 text-center">
+<h2>Contact</h2>
+<p>Dacă vrei să afli mai multe despre călătoriile mele în Japonia, scrie-mi!</p>
+
+<input class="form-control w-50 mx-auto mb-3" placeholder="Email">
+<textarea class="form-control w-50 mx-auto mb-3" placeholder="Mesaj"></textarea>
+<button class="btn btn-primary">Trimite</button>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+<p>© 2026 Blogul de călătorii - Valeriu Angheluță</p>
+</footer>
+
+<script>
+function salut(){
+alert("Bine ai venit pe blogul meu de călătorii prin Japonia!");
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
