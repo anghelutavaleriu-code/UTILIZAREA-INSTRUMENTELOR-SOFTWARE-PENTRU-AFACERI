@@ -1,165 +1,549 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Personal | Cariera IT</title>
+    <meta name="description" content="Blog personal despre evolutia in cariera IT: skill-uri, interviuri, proiecte si dezvoltare profesionala.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #f1efe6;
+            --bg-card: #fffdf7;
+            --text-main: #182224;
+            --text-soft: #4a5f64;
+            --primary: #0f766e;
+            --primary-dark: #0a524d;
+            --accent: #ff7a18;
+            --line: #d7ddd5;
+            --shadow: 0 14px 40px rgba(15, 48, 53, 0.12);
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --radius-sm: 10px;
+        }
 
-<title>Valeriu Angheluță - Blog de călătorii în Japonia</title>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        html {
+            scroll-behavior: smooth;
+        }
 
-<style>
-body{
-    background:#f5f5f5;
-}
+        body {
+            font-family: "IBM Plex Sans", sans-serif;
+            color: var(--text-main);
+            background:
+                radial-gradient(circle at 12% 14%, rgba(255, 122, 24, 0.13), transparent 34%),
+                radial-gradient(circle at 86% 5%, rgba(15, 118, 110, 0.15), transparent 28%),
+                linear-gradient(180deg, #f7f4eb 0%, #ece9dc 100%);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
 
-.hero{
-    background:url("https://images.unsplash.com/photo-1505066827145-34bcde228f1c") center/cover;
-    height:80vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:white;
-    text-shadow:2px 2px 10px black;
-}
+        .shape {
+            position: fixed;
+            z-index: -1;
+            border-radius: 50%;
+            filter: blur(50px);
+            opacity: 0.45;
+        }
 
-.card img{
-    height:200px;
-    object-fit:cover;
-}
+        .shape-left {
+            width: 260px;
+            height: 260px;
+            background: #ffb375;
+            left: -80px;
+            top: 40px;
+            animation: drift 12s ease-in-out infinite;
+        }
 
-.gallery img{
-    width:100%;
-    height:200px;
-    object-fit:cover;
-    transition:0.3s;
-}
+        .shape-right {
+            width: 320px;
+            height: 320px;
+            background: #6cc6bd;
+            right: -110px;
+            top: 320px;
+            animation: drift 14s ease-in-out infinite reverse;
+        }
 
-.gallery img:hover{
-    transform:scale(1.08);
-}
+        @keyframes drift {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-24px) translateX(10px); }
+        }
 
-footer{
-    background:#111;
-    color:white;
-    padding:20px;
-    text-align:center;
-}
-</style>
+        .container {
+            width: min(1120px, 92%);
+            margin: 0 auto;
+        }
 
+        .nav-wrap {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(8px);
+            background: rgba(247, 244, 235, 0.85);
+            border-bottom: 1px solid var(--line);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+        }
+
+        .brand {
+            font-family: "Space Grotesk", sans-serif;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            font-size: 1.1rem;
+        }
+
+        .menu {
+            display: flex;
+            gap: 1.25rem;
+            list-style: none;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            transition: color 0.25s ease;
+        }
+
+        .menu a:hover {
+            color: var(--primary);
+        }
+
+        .hero {
+            padding: 5.5rem 0 3rem;
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: clamp(2.1rem, 5vw, 4rem);
+            line-height: 1.06;
+            margin-bottom: 1rem;
+            max-width: 16ch;
+            animation: rise 0.9s ease;
+        }
+
+        .hero p {
+            color: var(--text-soft);
+            font-size: 1.1rem;
+            max-width: 52ch;
+            animation: rise 1.1s ease;
+        }
+
+        .cta-row {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1.6rem;
+            animation: rise 1.25s ease;
+        }
+
+        .btn {
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 999px;
+            padding: 0.75rem 1.2rem;
+            font-weight: 600;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        }
+
+        .btn-main {
+            background: var(--primary);
+            color: #ffffff;
+            box-shadow: 0 8px 22px rgba(15, 118, 110, 0.3);
+        }
+
+        .btn-alt {
+            color: var(--text-main);
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.66);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .hero-panel {
+            background: linear-gradient(140deg, #fffdf6 0%, #ecf5f0 100%);
+            border: 1px solid #d9e3dd;
+            border-radius: var(--radius-lg);
+            padding: 1.4rem;
+            box-shadow: var(--shadow);
+            animation: rise 1.2s ease;
+        }
+
+        .hero-panel h3 {
+            font-family: "Space Grotesk", sans-serif;
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.8rem;
+        }
+
+        .stat-card {
+            background: #fff;
+            border: 1px solid #dfebe4;
+            border-radius: var(--radius-sm);
+            padding: 0.8rem;
+        }
+
+        .stat-card span {
+            display: block;
+            color: var(--text-soft);
+            font-size: 0.85rem;
+        }
+
+        .stat-card strong {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+        }
+
+        section {
+            margin-top: 3.5rem;
+        }
+
+        .section-title {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-intro {
+            color: var(--text-soft);
+            max-width: 66ch;
+            margin-bottom: 1.25rem;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-md);
+            padding: 1.2rem;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.04);
+            transition: transform 0.22s ease, border-color 0.22s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: #9ab9ac;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #eaf4ef;
+            color: var(--primary-dark);
+            border-radius: 999px;
+            font-size: 0.76rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            padding: 0.25rem 0.58rem;
+            margin-bottom: 0.7rem;
+        }
+
+        .card h3 {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 1.16rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            color: var(--text-soft);
+            margin-bottom: 0.8rem;
+        }
+
+        .timeline {
+            border-left: 3px solid #b8cec3;
+            padding-left: 1rem;
+            display: grid;
+            gap: 1rem;
+        }
+
+        .step {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid #d8e0d9;
+            border-radius: var(--radius-sm);
+            padding: 1rem;
+        }
+
+        .step h4 {
+            font-family: "Space Grotesk", sans-serif;
+            margin-bottom: 0.35rem;
+            color: var(--primary-dark);
+        }
+
+        .newsletter {
+            margin-top: 3.5rem;
+            padding: 1.3rem;
+            background: linear-gradient(120deg, #083530 0%, #0f766e 55%, #0d5f58 100%);
+            border-radius: var(--radius-lg);
+            color: #ecfffb;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 1rem;
+            align-items: center;
+            box-shadow: var(--shadow);
+        }
+
+        .newsletter h3 {
+            font-family: "Space Grotesk", sans-serif;
+            margin-bottom: 0.25rem;
+        }
+
+        .form {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        input[type="email"] {
+            border: none;
+            border-radius: 999px;
+            padding: 0.72rem 0.95rem;
+            min-width: 240px;
+            font: inherit;
+        }
+
+        .btn-accent {
+            border: none;
+            border-radius: 999px;
+            padding: 0.72rem 1rem;
+            font: inherit;
+            font-weight: 600;
+            background: var(--accent);
+            color: #1f1303;
+            cursor: pointer;
+            transition: transform 0.2s ease, filter 0.2s ease;
+        }
+
+        .btn-accent:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.02);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0 2.3rem;
+            color: #5f6f71;
+            font-size: 0.92rem;
+        }
+
+        @keyframes rise {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 920px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 1.35rem;
+            }
+
+            .cards {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .newsletter {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .menu {
+                gap: 0.8rem;
+            }
+
+            .menu a {
+                font-size: 0.9rem;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-row {
+                flex-wrap: wrap;
+            }
+
+            input[type="email"] {
+                min-width: 100%;
+            }
+        }
+    </style>
 </head>
-
 <body>
+    <div class="shape shape-left" aria-hidden="true"></div>
+    <div class="shape shape-right" aria-hidden="true"></div>
 
-<!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-<div class="container">
-<a class="navbar-brand" href="#">Valeriu Angheluță</a>
+    <header class="nav-wrap">
+        <div class="container">
+            <nav>
+                <p class="brand">Blogul meu personal</p>
+                <ul class="menu">
+                    <li><a href="#inceput">Inceput</a></li>
+                    <li><a href="#articole">Articole</a></li>
+                    <li><a href="#roadmap">Roadmap IT</a></li>
+                    <li><a href="#resurse">Resurse</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-<button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
-<span class="navbar-toggler-icon"></span>
-</button>
+    <main class="container">
+        <section class="hero" id="inceput">
+            <div>
+                <h1>Cariera IT explicata clar, fara zgomot inutil</h1>
+                <p>
+                    Acest blog personal aduna lectii reale din industrie: cum inveti eficient,
+                    cum treci de interviuri tehnice, cum construiesti proiecte utile in portofoliu
+                    si cum iti planifici urmatorii ani in tech.
+                </p>
+                <div class="cta-row">
+                    <a class="btn btn-main" href="#articole">Citeste articolele</a>
+                    <a class="btn btn-alt" href="#newsletter">Aboneaza-te la noutati</a>
+                </div>
+            </div>
 
-<div class="collapse navbar-collapse" id="menu">
-<ul class="navbar-nav ms-auto">
-<li class="nav-item"><a class="nav-link" href="#">Acasă</a></li>
-<li class="nav-item"><a class="nav-link" href="#articole">Articole</a></li>
-<li class="nav-item"><a class="nav-link" href="#galerie">Galerie</a></li>
-<li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-</ul>
-</div>
-</div>
-</nav>
+            <aside class="hero-panel">
+                <h3>Ce gasesti in blog</h3>
+                <p>Continut orientat pe progres practic pentru juniori, mid-level si profesionisti care vor tranzitie spre roluri mai avansate.</p>
+                <div class="stats">
+                    <div class="stat-card">
+                        <span>Ghiduri publicate</span>
+                        <strong>42+</strong>
+                    </div>
+                    <div class="stat-card">
+                        <span>Interviuri analizate</span>
+                        <strong>120</strong>
+                    </div>
+                    <div class="stat-card">
+                        <span>Studii de caz</span>
+                        <strong>18</strong>
+                    </div>
+                    <div class="stat-card">
+                        <span>Resurse gratuite</span>
+                        <strong>56</strong>
+                    </div>
+                </div>
+            </aside>
+        </section>
 
-<!-- HERO -->
-<section class="hero">
-<div class="text-center">
-<h1 class="display-4">Jurnalul meu din Japonia</h1>
-<p class="lead">Aventurile lui Valeriu Angheluță prin Tokyo, Kyoto și Osaka</p>
+        <section id="articole">
+            <h2 class="section-title">Articole recomandate</h2>
+            <p class="section-intro">Fiecare articol raspunde la o intrebare concreta pe care o are aproape orice persoana in dezvoltarea unei cariere IT.</p>
+            <div class="cards">
+                <article class="card">
+                    <span class="tag">Interviuri</span>
+                    <h3>Cum te pregatesti in 30 de zile pentru un interviu de backend</h3>
+                    <p>Plan saptamanal cu algoritmi, API design, SQL, debugging si simulare de interviu tehnic.</p>
+                    <a href="#" class="btn btn-alt">Citeste ghidul</a>
+                </article>
+                <article class="card">
+                    <span class="tag">Portofoliu</span>
+                    <h3>3 proiecte care arata senioritate, nu doar cod scris</h3>
+                    <p>Inveti sa demonstrezi gandire de produs, observabilitate, testare si deployment continuu.</p>
+                    <a href="#" class="btn btn-alt">Vezi proiectele</a>
+                </article>
+                <article class="card">
+                    <span class="tag">Career Growth</span>
+                    <h3>Cand ramai pe specialist si cand treci spre leadership</h3>
+                    <p>Comparam traseele de cariera, impactul in echipa si abilitatile necesare pentru fiecare directie.</p>
+                    <a href="#" class="btn btn-alt">Citeste analiza</a>
+                </article>
+            </div>
+        </section>
 
-<button class="btn btn-danger btn-lg mt-3" onclick="salut()">Descoperă aventura</button>
-</div>
-</section>
+        <section id="roadmap">
+            <h2 class="section-title">Roadmap pentru cariera IT</h2>
+            <p class="section-intro">Un traseu practic pe care il poti adapta indiferent daca esti la inceput sau deja lucrezi intr-o echipa tehnica.</p>
+            <div class="timeline">
+                <article class="step">
+                    <h4>Etapa 1: Fundament solid</h4>
+                    <p>Consolideaza bazele: structuri de date, OOP, Git, SQL, HTTP, Linux si testare automata.</p>
+                </article>
+                <article class="step">
+                    <h4>Etapa 2: Proiecte reale</h4>
+                    <p>Construieste 2-3 proiecte complete cu autentificare, monitorizare, CI/CD si documentatie tehnica.</p>
+                </article>
+                <article class="step">
+                    <h4>Etapa 3: Vizibilitate profesionala</h4>
+                    <p>Publica articole tehnice, optimizeaza profilul LinkedIn, contribuie la open-source si cere feedback periodic.</p>
+                </article>
+                <article class="step">
+                    <h4>Etapa 4: Crestere sustenabila</h4>
+                    <p>Invata prioritizare, estimare, comunicare cu stakeholderi si strategie de invatare pe termen lung.</p>
+                </article>
+            </div>
+        </section>
 
-<!-- ARTICOLE -->
-<section id="articole" class="container py-5">
-<h2 class="text-center mb-4">Ultimele articole</h2>
+        <section id="resurse">
+            <h2 class="section-title">Resurse utile</h2>
+            <p class="section-intro">Selectie de materiale recomandate pentru invatare practica si pregatire pentru joburi competitive in IT.</p>
+            <div class="cards">
+                <article class="card">
+                    <span class="tag">Invatare</span>
+                    <h3>Checklist tehnic pentru juniori</h3>
+                    <p>Un set clar de obiective lunare ca sa treci de la teorie la aplicare concreta in proiecte.</p>
+                </article>
+                <article class="card">
+                    <span class="tag">Interviuri</span>
+                    <h3>Template de raspunsuri STAR pentru HR</h3>
+                    <p>Exemple de raspunsuri structurate pentru intrebari comportamentale frecvente in recrutare.</p>
+                </article>
+                <article class="card">
+                    <span class="tag">Productivitate</span>
+                    <h3>Sistem de invatare in sprinturi de 2 saptamani</h3>
+                    <p>Model simplu pentru a urmari progresul tehnic fara burnout si fara obiective neclare.</p>
+                </article>
+            </div>
+        </section>
 
-<div class="row g-4">
+        <section class="newsletter" id="newsletter">
+            <div>
+                <h3>Newsletter saptamanal: Cariera IT pe bune</h3>
+                <p>Primesti idei aplicabile, analize de trend si un exercitiu practic in fiecare editie.</p>
+            </div>
+            <form class="form" onsubmit="event.preventDefault(); alert('Multumesc! Te-ai abonat cu succes la newsletter.');">
+                <label for="email" class="sr-only" style="position:absolute;left:-9999px;">Email</label>
+                <input id="email" type="email" placeholder="Adresa ta de email" required>
+                <button class="btn-accent" type="submit">Aboneaza-ma</button>
+            </form>
+        </section>
+    </main>
 
-<div class="col-md-4">
-<div class="card shadow">
-<img src="https://images.unsplash.com/photo-1549692520-acc6669e2f0c">
-<div class="card-body">
-<h5 class="card-title">Prima zi în Tokyo</h5>
-<p class="card-text">Am explorat Shibuya Crossing și am gustat primul ramen autentic.</p>
-<button class="btn btn-outline-primary">Citește</button>
-</div>
-</div>
-</div>
-
-<div class="col-md-4">
-<div class="card shadow">
-<img src="https://images.unsplash.com/photo-1495567720989-cebdbdd97913">
-<div class="card-body">
-<h5 class="card-title">Templele din Kyoto</h5>
-<p class="card-text">O zi liniștită printre temple tradiționale și grădini japoneze.</p>
-<button class="btn btn-outline-primary">Citește</button>
-</div>
-</div>
-</div>
-
-<div class="col-md-4">
-<div class="card shadow">
-<img src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26">
-<div class="card-body">
-<h5 class="card-title">Noaptea în Osaka</h5>
-<p class="card-text">Străzile pline de lumină și street food incredibil.</p>
-<button class="btn btn-outline-primary">Citește</button>
-</div>
-</div>
-</div>
-
-</div>
-</section>
-
-<!-- GALERIE -->
-<section id="galerie" class="container py-5">
-<h2 class="text-center mb-4">Galerie din Japonia</h2>
-
-<div class="row g-3 gallery">
-
-<div class="col-md-3"><img src="https://images.unsplash.com/photo-1526481280691-7813e7f9d0a7"></div>
-<div class="col-md-3"><img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186"></div>
-<div class="col-md-3"><img src="https://images.unsplash.com/photo-1504788363733-507549153474"></div>
-<div class="col-md-3"><img src="https://images.unsplash.com/photo-1498654896293-37aacf113fd9"></div>
-
-</div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="container py-5 text-center">
-<h2>Contact</h2>
-<p>Dacă vrei să afli mai multe despre călătoriile mele în Japonia, scrie-mi!</p>
-
-<input class="form-control w-50 mx-auto mb-3" placeholder="Email">
-<textarea class="form-control w-50 mx-auto mb-3" placeholder="Mesaj"></textarea>
-<button class="btn btn-primary">Trimite</button>
-
-</section>
-
-<!-- FOOTER -->
-<footer>
-<p>© 2026 Blogul de călătorii - Valeriu Angheluță</p>
-</footer>
-
-<script>
-function salut(){
-alert("Bine ai venit pe blogul meu de călătorii prin Japonia!");
-}
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
+    <footer>
+        <p>© 2026 Blog personal - Cariera IT. Continut creat pentru crestere profesionala constanta.</p>
+    </footer>
 </body>
 </html>
